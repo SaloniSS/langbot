@@ -11,6 +11,7 @@
     "@react-native-community/async-storage": "^1.6.2",
     "@tradle/react-native-http": "^2.0.0",
     "assert": "^1.1.1",
+    "asyncstorage-down": "^3.2.1",
     "bcryptjs": "^2.4.3",
     "browserify-zlib": "^0.1.4",
     "buffer": "^4.9.1",
