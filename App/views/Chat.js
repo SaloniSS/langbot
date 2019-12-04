@@ -6,15 +6,7 @@ Source for API Handling: https://medium.com/better-programming/handling-api-like
 */
 
 //React Dependencies
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Platform,
-  Image,
-  AsyncStorage
-} from "react-native";
+import {StyleSheet,Text,View,Button,Platform,Image,AsyncStorage} from "react-native";
 import React, { Component } from "react";
 //Gifted Chat Dependency
 import { GiftedChat } from "react-native-gifted-chat";
@@ -24,11 +16,7 @@ import { NativeAppEventEmitter } from "react-native";
 import { User } from "../User.js";
 import { ChatMessage } from "../ChatMessage.js";
 //Configurations
-import {
-  dialogflowConfig,
-  firebaseConfig,
-  googleTranslateConfig
-} from "../env";
+import {dialogflowConfig,firebaseConfig,googleTranslateConfig} from "../env";
 //Front-End Dependencies
 import KeyboardSpacer from "react-native-keyboard-spacer";
 import ImageButton from "../components/ImageButton";
@@ -116,8 +104,14 @@ export default class Chat extends Component {
   };
 
   state = {
-    messages: [],
-    login: null
+    messages: [
+      {
+        _id: 1,
+        text: `Hi! I am the LangBot 🤖 \n\n Happy Birthday!`,
+        createdAt: new Date(),
+        user: BOT_USER
+      }
+    ]
   };
 
   //A lifecycle method to apply Dialogflow's configuration.
