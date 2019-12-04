@@ -73,7 +73,7 @@ const DEFAULT_MESSAGE = {
   user: BOT_USER
 };
 
-const LANGUAGE = 'vi';
+const LANGUAGE = 'es';
 
 export default class Chat extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -96,7 +96,7 @@ export default class Chat extends Component {
             marginLeft: 5,
             resizeMode: "contain"
           }}
-          source={require("../assets/flags/vietnam.png")}
+          source={require("../assets/flags/spain.png")}
           onPress={() => {
             navigation.navigate("Languages");
           }}
@@ -109,7 +109,7 @@ export default class Chat extends Component {
     messages: [
       {
         _id: 1,
-        text: `Hi! I am the LangBot 🤖 \n\nHappy Birthday!`,
+        text: `Hi! I am the LangBot 🤖 \n\nAsk me anything!`,
         createdAt: new Date(),
         user: BOT_USER
       }

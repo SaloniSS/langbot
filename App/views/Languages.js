@@ -4,10 +4,6 @@ import ImageButton from "../components/ImageButton";
 
 const DATA = [
 	{
-		img: require("../assets/flags/vietnam.png"),
-		id: "VI"
-	},
-	{
 		img: require("../assets/flags/spain.png"),
 		id: "ES"
 	},
@@ -22,6 +18,10 @@ const DATA = [
 	{
 		img: require("../assets/flags/german.png"),
 		id: "DE"
+	},
+	{
+		img: require("../assets/flags/vietnam.png"),
+		id: "VI"
 	}
 ];
 
