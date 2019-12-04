@@ -73,6 +73,8 @@ const DEFAULT_MESSAGE = {
   user: BOT_USER
 };
 
+const LANGUAGE = 'vi';
+
 export default class Chat extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
@@ -94,7 +96,7 @@ export default class Chat extends Component {
             marginLeft: 5,
             resizeMode: "contain"
           }}
-          source={require("../assets/flags/spain.png")}
+          source={require("../assets/flags/vietnam.png")}
           onPress={() => {
             navigation.navigate("Languages");
           }}
@@ -107,7 +109,7 @@ export default class Chat extends Component {
     messages: [
       {
         _id: 1,
-        text: `Hi! I am the LangBot 🤖 \n\n Happy Birthday!`,
+        text: `Hi! I am the LangBot 🤖 \n\nHappy Birthday!`,
         createdAt: new Date(),
         user: BOT_USER
       }
@@ -198,7 +200,16 @@ export default class Chat extends Component {
   */
   handleGoogleResponse(result) {
     let text = result.queryResult.fulfillmentMessages[0].text.text[0];
-    this.sendBotResponse(text);
+    url = 'https://translation.googleapis.com/language/translate/v2?key=' + googleTranslateConfig +'&q=' + text +' &target=vi';
+    fetch(url)
+    .then(response => response.json())
+    .then((responseJson)=> {
+    translated = responseJson.data.translations[0].translatedText;
+	  console.log("Translated : " + translated);
+    this.sendBotResponse(translated);
+    })
+    .catch(error=>console.log(error)) //to catch the errors if any
+    
   }
 
   /*
@@ -211,6 +222,12 @@ export default class Chat extends Component {
     }));
 
     let messageText = messages[0].text;
+    url = 'https://translation.googleapis.com/language/translate/v2?key=' + googleTranslateConfig +'&q=' + messageText +' &target=en';
+    fetch(url)
+    .then(response => response.json())
+    .then((responseJson)=> {
+    translated = responseJson.data.translations[0].translatedText;
+	  console.log("Translated : " + translated);
     let messageObj = ChatMessage.createChatMessageFromData(messages[0]);
     this.saveMessage(messageObj);
 
@@ -239,11 +256,14 @@ export default class Chat extends Component {
       It contains three parameters:the text itself as the first parameter; in our case message, the result and error callback functions
       */
       Dialogflow_V2.requestQuery(
-        messageText,
+        translated,
         result => this.handleGoogleResponse(result),
         error => console.log(error)
       );
     }
+    })
+    .catch(error=>console.log(error)) //to catch the errors if any
+    
   }
 
   detectLanguage(text){
@@ -253,13 +273,13 @@ export default class Chat extends Component {
     .then((responseJson)=> {
       language = responseJson.data.detections[0][0].language;
 	  console.log("Language : " + language);
-	  if (language == 'es')
+	  if (language == LANGUAGE)
 	  {
 		this.translateText(text,'en');
 	  }
 	  else
 	  {
-		this.translateText(text,'es');
+		this.translateText(text,LANGUAGE);
 	  }
     })
     .catch(error=>console.log(error)) //to catch the errors if any
@@ -283,6 +303,8 @@ export default class Chat extends Component {
 	whatever response back to the user in the chat interface.
 	*/
   sendBotResponse(text) {
+    
+
     // create a new message
     let msg = new ChatMessage(
       this.state.messages.length + 1,
