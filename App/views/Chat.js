@@ -3,6 +3,8 @@ Source for integrating Gifted Chat and DialogFlow : https://blog.jscrambler.com/
 Source for integrating firestore: https://firebase.google.com/docs/firestore/quickstart
 Source for disabling   YellowBox warnings: https://stackoverflow.com/questions/44603362/setting-a-timer-for-a-long-period-of-time-i-e-multiple-minutes
 Source for API Handling: https://medium.com/better-programming/handling-api-like-a-boss-in-react-native-364abd92dc3d
+Source for Building StandAlone App: https://docs.expo.io/versions/latest/distribution/building-standalone-apps/
+Privacy Policy: https://www.freeprivacypolicy.com/privacy/view/f4731146e06c4ed5bcbe55cf32762b41
 */
 
 //React Dependencies
@@ -73,7 +75,7 @@ const DEFAULT_MESSAGE = {
   user: BOT_USER
 };
 
-const LANGUAGE = 'es';
+const LANGUAGE = 'en';
 
 export default class Chat extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -128,7 +130,7 @@ export default class Chat extends Component {
     Dialogflow_V2.setConfiguration(
       dialogflowConfig.client_email,
       dialogflowConfig.private_key,
-      Dialogflow_V2.LANG_SPANISH,
+      Dialogflow_V2.LANG_ENGLISH,
       dialogflowConfig.project_id
     );
 
@@ -200,7 +202,7 @@ export default class Chat extends Component {
   */
   handleGoogleResponse(result) {
     let text = result.queryResult.fulfillmentMessages[0].text.text[0];
-    url = 'https://translation.googleapis.com/language/translate/v2?key=' + googleTranslateConfig +'&q=' + text +' &target=vi';
+    url = 'https://translation.googleapis.com/language/translate/v2?key=' + googleTranslateConfig +'&q=' + text +' &target=' + LANGUAGE;
     fetch(url)
     .then(response => response.json())
     .then((responseJson)=> {
@@ -247,7 +249,7 @@ export default class Chat extends Component {
         if (value === "SPEECH") {
           // speak it!
           Speech.speak(messageText, {
-            language: "es-ES"
+            language: "en-US"
           });
         }
       });

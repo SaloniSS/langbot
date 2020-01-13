@@ -1,24 +1,37 @@
 {
-	"expo": {
-		"name": "LangBot",
-		"slug": "langbot",
-		"privacy": "public",
-		"sdkVersion": "34.0.0",
-		"platforms": ["ios", "android", "web"],
-		"version": "1.0.0",
-		"orientation": "portrait",
-		"icon": "./assets/icon.png",
-		"splash": {
-			"image": "./assets/splash.png",
-			"resizeMode": "cover",
-			"backgroundColor": "#ffffff"
-		},
-		"updates": {
-			"fallbackToCacheTimeout": 0
-		},
-		"assetBundlePatterns": ["**/*"],
-		"ios": {
-			"supportsTablet": true
-		}
-	}
+  "expo": {
+    "name": "LangBot",
+    "slug": "langbot",
+    "privacy": "public",
+    "sdkVersion": "34.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "2.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.acmprojects.langbot"
+    },
+    "description": "LangBot is a mobile chatbot that is trained to teach people how to read, write, understand, and speak a new language.",
+    "entryPoint": "node_modules/expo/AppEntry.js"
+  },
+  "displayName": "LangBot",
+  "name": "LangBot"
 }
